@@ -17,6 +17,11 @@ const basicFetch = async (endpoint: string) => {
   return await req.json();
 };
 
+const customFetch = async (endpoint: string) => {
+  const req = await fetch(`${ API_BASE }${ endpoint }?language=pt-BR&api_key=${ API_KEY }`);
+  return await req.json();
+}
+
 export default {
   getHomeList: async () => {
     return [
@@ -28,37 +33,37 @@ export default {
       {
         slug: 'trending',
         title: 'Recomendados para Você',
-        items: await basicFetch('/trending/all/week'),
+        items: await customFetch('/trending/all/week'),
       },
       {
         slug: 'toprated',
         title: 'Em alta',
-        items: await basicFetch('/movie/top_rated'),
+        items: await customFetch('/movie/top_rated'),
       },
       {
         slug: 'action',
         title: 'Ação',
-        items: await basicFetch('/discovery/movie?with_genres=28'),
+        items: await basicFetch('/discover/movie?with_genres=28'),
       },
       {
         slug: 'comedy',
         title: 'Comédio',
-        items: await basicFetch('/discovery/movie?with_genres=35'),
+        items: await basicFetch('/discover/movie?with_genres=35'),
       },
       {
         slug: 'horror',
         title: 'Terror',
-        items: await basicFetch('/discovery/movie?with_genres=27'),
+        items: await basicFetch('/discover/movie?with_genres=27'),
       },
       {
         slug: 'romance',
         title: 'Romance',
-        items: await basicFetch('/discovery/movie?with_genres=10749'),
+        items: await basicFetch('/discover/movie?with_genres=10749'),
       },
       {
         slug: 'documentary',
         title: 'Documentários',
-        items: await basicFetch('/discovery/movie?with_genres=99'),
+        items: await basicFetch('/discover/movie?with_genres=99'),
       },
     ];
   },
