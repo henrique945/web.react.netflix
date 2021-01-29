@@ -1,3 +1,6 @@
+import { HomeDataInterface } from '../interfaces/home-data.interface';
+import { MovieDetailInterface } from '../interfaces/movie-detail.interface';
+
 const API_KEY = 'b22d3c5aad3fdfadf82f70f1fa39d266';
 const API_BASE = 'https://api.themoviedb.org/3';
 
@@ -20,10 +23,10 @@ const basicFetch = async (endpoint: string) => {
 const customFetch = async (endpoint: string) => {
   const req = await fetch(`${ API_BASE }${ endpoint }?language=pt-BR&api_key=${ API_KEY }`);
   return await req.json();
-}
+};
 
 export default {
-  getHomeList: async () => {
+  getHomeList: async (): Promise<HomeDataInterface[]> => {
     return [
       {
         slug: 'originals',
@@ -66,5 +69,26 @@ export default {
         items: await basicFetch('/discover/movie?with_genres=99'),
       },
     ];
+  },
+  getMovieInfo: async (movieId: number, type: string): Promise<MovieDetailInterface | null> => {
+    let info: MovieDetailInterface | null = null;
+
+    if (!movieId)
+      return info;
+
+    switch (type) {
+      case 'movie':
+        info = await customFetch(`/movie/${ movieId }`);
+        break;
+
+      case 'tv':
+        info = await customFetch(`/tv/${ movieId }`);
+        break;
+
+      default:
+        break;
+    }
+
+    return info;
   },
 };
