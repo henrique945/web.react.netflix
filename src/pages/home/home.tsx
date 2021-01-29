@@ -66,6 +66,12 @@ function Home(): ReactElement {
           <MovieRow key={ key } title={ item.title } items={ item.items }/>
         )) }
       </section>
+
+      <footer>
+        Feito com <span role="img" aria-label="coração">❤</span> por Henrique Rodrigues
+        Direitos de imagem para Netflix
+        Dados pegos do site Themoviedb.org
+      </footer>
     </div>
   );
 }
