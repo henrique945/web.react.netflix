@@ -58,7 +58,7 @@ function Home(): ReactElement {
       <Header black={ blackHeader }/>
 
       { featuredData &&
-			<FeaturedMovie movie={ featuredData }/>
+			  <FeaturedMovie movie={ featuredData }/>
       }
 
       <section className="lists">
@@ -68,8 +68,8 @@ function Home(): ReactElement {
       </section>
 
       <footer>
-        Feito com <span role="img" aria-label="coração">❤</span> por Henrique Rodrigues
-        Direitos de imagem para Netflix
+        Feito com <span role="img" aria-label="coração">❤</span> por Henrique Rodrigues<br/>
+        Direitos de imagem para Netflix<br/>
         Dados pegos do site Themoviedb.org
       </footer>
 
