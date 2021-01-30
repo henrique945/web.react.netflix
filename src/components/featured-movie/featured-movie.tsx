@@ -10,6 +10,10 @@ export default ({ movie }: FeaturedMovieInterface): ReactElement => {
     genres.push(movie?.genres[+i].name);
   }
 
+  let description = movie?.overview;
+  if(description && description?.length > 200)
+    description = description?.substring(0,200) + '...';
+
   return (
     <section className="featured" style={ {
       backgroundSize: 'cover',
@@ -24,7 +28,7 @@ export default ({ movie }: FeaturedMovieInterface): ReactElement => {
             <div className="featured--year">{ firstDate.getFullYear() }</div>
             <div className="featured--seasons">{ movie?.number_of_seasons } temporada{ movie?.number_of_seasons !== 1 ? 's' : '' }</div>
           </div>
-          <div className="featured--description">{ movie?.overview }</div>
+          <div className="featured--description">{ description }</div>
           <div className="featured--buttons">
             <a href={`/watch/${movie?.id}`} className="featured--watch-button">▶ Assistir</a>
             <a href={`/watch/${movie?.id}`} className="featured--my-list-button">+ Minha Lista</a>
